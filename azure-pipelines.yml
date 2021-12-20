@@ -1,0 +1,34 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: 'prashantkat1980/angular-combined/'
+- task: SonarQubePrepare@5
+  inputs:
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'my-project'
+    cliProjectName: 'my-project'
+    cliSources: '.prashantkat1980/angular-combined'
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    workingDir: 'prashantkat1980/angular-combined/'
+    customCommand: 'run build'
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
