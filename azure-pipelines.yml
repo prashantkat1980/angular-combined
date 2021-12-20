@@ -13,21 +13,21 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
-    workingDir: 'prashantkat1980/angular-combined/'
+    workingDir: 'prashantkat1980/angular-combined/frontend'
 - task: SonarQubePrepare@5
   inputs:
     scannerMode: 'CLI'
     configMode: 'manual'
     cliProjectKey: 'my-project'
     cliProjectName: 'my-project'
-    cliSources: '.prashantkat1980/angular-combined'
+    cliSources: '.prashantkat1980/angular-combined/frontend'
 - task: SonarQubePublish@5
   inputs:
     pollingTimeoutSec: '300'
 - task: Npm@1
   inputs:
     command: 'custom'
-    workingDir: 'prashantkat1980/angular-combined/'
+    workingDir: 'prashantkat1980/angular-combined/frontend'
     customCommand: 'run build'
 - task: SonarQubePublish@5
   inputs:
